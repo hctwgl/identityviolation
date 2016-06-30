@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/
+/identityviolation.iml
+/identityviolation-core/target/
+/identityviolation-web/target/
+/identityviolation-core/identityviolation-core.iml
+/identityviolation-web/identityviolation-web.iml

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="http://218.25.58.44:80/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>交警查询</title>
+<link href="searchsys/newimages/jingbao.css" rel="stylesheet" type="text/css">
+	<style>
+.red {
+	color: red;
+}
+
+.hui {
+	color: #999;
+}
+
+.hide {
+	display: none;
+}
+
+.txt {
+	height: 22px;
+	line-height: 22px;
+	width: 200px;
+	border: 1px solid #abadb3;
+	color: #999;
+}
+
+.title {
+	color: red;
+	text-align: center;
+}
+
+.table {
+	color: #686868;
+	margin: 0 auto;
+}
+
+.table tr {
+	background-color: #fff;
+	height: 35px;
+}
+
+.table .tr_bg {
+	background-color: #f3f3f3;
+}
+
+.table td {
+	padding: 0 5px;
+}
+
+.table .td1 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.table .td2 {
+	text-align: left;
+	line-height: 22px;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.table a:link,.table a:hover,.table a:visited,.table a:active {
+	color: #004398;
+	font- size: 12px;
+}
+
+.border1 {
+	border: 1px solid #dedede;
+}
+
+.border_lrb {
+	border: 1px solid #dedede;
+	border-top: none;
+	background-color: #FFF7EA;
+	width: 904px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.border_lrb1 {
+	border: 1px solid #dedede;
+	border-bottom: none;
+	background-color: #FFF7EA;
+	width: 904px;
+	margin: 0 auto;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 10px;
+}
+
+.border_lrb1 span {
+	height: 26px;
+	line-height: 26px;
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.border_lrb_top {
+	border-top: 1px solid #dedede;
+}
+
+.but_xyb {
+	background: url(searchsys/newimages/ban_xyb.gif);
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 26px;
+	line-height: 26px;
+	border: 0px;
+	cursor: pointer;
+	color: #000;
+	display: inline;
+}
+
+.line_height_22 {
+	line-height: 22px;
+}
+
+.bk_cs {
+	border: 1px solid #FEECCE;
+	background-color: #FFF7EA;
+	width: 638px;
+	margin: 10px auto;
+	padding: 5px;
+	font-size: 14px;
+}
+
+.bk_cs span {
+	color: #f60;
+	font-weight: bold
+}
+
+.bk_cs font {
+	color: #f60;
+}
+</style>
+</head>
+
+<body>
+	<table border="0" cellpadding="00" cellspacing="0" width="100%">
+		<tbody>
+			<tr>
+				<td height="240" align="center"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" height="233" width="906">
+						<param name="movie" value="searchsys/newimages/main.swf">
+							<param name="quality" value="high">
+								<embed src="searchsys/newimages/main.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-
+flash" height="233" width="906">
+					</object></td>
+			</tr>
+		</tbody>
+	</table>
+	<table id="nav" border="0" cellpadding="00" cellspacing="0" width="100%">
+		<tbody>
+			<tr>
+				<td><table align="center" border="0" cellpadding="00" cellspacing="0" width="906">
+						<tbody>
+							<tr>
+								<td style="color: #FFFFFF" height="36" align="center" background="searchsys/newimages/menu.gif" valign="bottom" width="129">&nbsp;</td>
+								<td background="searchsys/newimages/menu_11.gif" valign="middle"><a href="http://www.sygajj.gov.cn/default.html">首页</a> <a href="http://www.sygajj.gov.cn/Article/classC/Index.html">交管新闻</a> <a href="http://www.sygajj.gov.cn/Article/classG/Index.html">基层动态</a> <!--<a href="/Article/downexl/Index.html">视频
+
+点播</a>-->
+									<a href="http://www.sygajj.gov.cn/Article/classH/Index.html">天下交通</a> <a href="http://www.sygajj.gov.cn/Article/classJ/Index.html">业务指南</a> <a href="http://www.sygajj.gov.cn/Article/txjt/Index.html">法律法规</a> <a href="http://gabsdt.shenyang.gov.cn/">在线办公</a> <a href="http://61.161.141.113/searchsys/" target="_blank">信息查询 </a> <a href="http://gabsdt.shenyang.gov.cn/">征求意见</a> <a href="http://www.sygajj.gov.cn/z3.htm">联系我们</a></td>
+							</tr>
+						</tbody>
+					</table></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="border_lrb1">
+		<span>在线查询 / 驾驶员积分信息</span>
+	</div>
+	<table border="0" cellpadding="1" cellspacing="1" bgcolor="#dedede" width="906" class="table" align="center">
+
+
+
+		<tr>
+			<td colspan="2">没有找到相关信息！</td>
+		</tr>
+
+
+	</table>
+
+	<div class="border_lrb" style="text-align: right;">
+		<img src="images/bk.png" style="cursor: hand;" onclick="javascript:history.back(-1);" />
+	</div>
+	</br>
+
+
+	<table style="color: #FFFFFF; font-size: 10pt;" align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" width="906">
+		<tbody>
+			<tr>
+				<td height="130" align="center" background="searchsys/newimages/end.PNG" valign="middle"><p>版权所有：沈阳市交通警察支队 E-maill:webmaster@sygajj.gov.cn 辽ICP备 07501079号</p>
+					<p>Copyright 2010 All Rights Reserved</p></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

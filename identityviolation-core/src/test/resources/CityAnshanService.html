@@ -1,0 +1,156 @@
+<!--
+function getnewidcard(idcard) 
+dim i, s ,wi,wf,result 
+wi= split("7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2",",",-1,1) 
+wf= split("1,0,x,9,8,7,6,5,4,3,2", ",",-1,1) 
+idcard = mid(idcard, 1, 6) & "19" & mid(idcard, 7, 9) 
+s=0 
+for i = 0 to ubound(wi) 
+
+s = cint(wi(i)) *cint(mid(idcard, i + 1, 1)) +s 
+
+next 
+getnewidcard=idcard & wf(s mod 11) 
+
+end function 
+
+idcard=request("idcard")
+select case Len(idcard)
+	case "15"
+		sfz=getnewidcard(idcard) 
+	case "18"
+		sfz=idcard
+	case else
+		Response.Write(Len(idcard))
+		Response.Write("<script>alert('请输入正确的身份证号码!');location.href='index.asp';</script>")
+End select-->
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<link rel="stylesheet" type="text/css" href="css/bk.css" />
+<body bgcolor="#D0DCFF">
+	<table width="960" height="100%" border="0" align="center" cellpadding="0" cellspacing="1">
+		<tr>
+			<td height="200" bgcolor="#FFFFFF">
+				<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style>
+
+
+				<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td height="150" valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="960" height="150">
+								<param name="movie" value="flash/logo.swf" />
+								<param name="play" value="true" />
+								<param name="loop" value="true" />
+								<param name="quality" value="high" />
+								<param name="WMODE" value="transparent" />
+								<embed width="960" height="150" src="flash/logo.swf" play="true" loop="True" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+							</object></td>
+					</tr>
+					<tr>
+						<td height="2" align="center"></td>
+					</tr>
+					<tr>
+						<td height="30" align="left" background="images/lanmu_table_960.jpg"><table border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td height="20" align="left" valign="middle" class="font_1">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.asp"><span class="font_1">返回首页</span></a>
+									</td>
+								</tr>
+							</table></td>
+					</tr>
+
+
+				</table> <script type="text/javascript" src="counter_sub.asp"></script>
+			</td>
+		</tr>
+		<tr>
+			<td height="4" bgcolor="#FFFFFF"></td>
+		</tr>
+		<tr>
+			<td align="center" valign="top" bgcolor="#FFFFFF"><p>&nbsp;</p>
+				<p>
+					<span class="font_3_14">驾驶人信息查询结果</span>
+				</p>
+
+				<table width="800" border="0" cellspacing="1" cellpadding="0" bgcolor="#0099FF">
+					<tr>
+						<td height="22" align="center" bgcolor="#FFFFFF">姓名</td>
+						<td height="22" align="center" bgcolor="#FFFFFF">发证机关</td>
+						<td height="22" align="center" bgcolor="#FFFFFF">累计积分</td>
+						<td align="center" bgcolor="#FFFFFF">有效期止</td>
+						<td height="22" align="center" bgcolor="#FFFFFF">驾驶证状态</td>
+					</tr>
+
+					<tr>
+						<td colspan="5" height="24" align="center" bgcolor="#FFFFFF">无驾驶员信息</td>
+					</tr>
+
+				</table>
+
+				<p>&nbsp;</p>
+				<table width="900" border="0" cellspacing="1" cellpadding="0" bgcolor="#0099FF">
+					<tr>
+						<td height="24" align="center" bgcolor="#FFFFFF">违法时间</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">违法地址</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">发现机关名称</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">发现机关代码</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">违法行为代码</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">违法行为内容</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">罚款金额</td>
+						<td height="24" align="center" bgcolor="#FFFFFF">违法积分</td>
+					</tr>
+
+				</table>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p></td>
+		</tr>
+		<tr>
+			<td height="4" bgcolor="#FFFFFF"></td>
+		</tr>
+		<tr>
+			<td height="100" bgcolor="#FFFFFF"><style type="text/css">
+<!--
+.STYLE1 {
+	color: #FFFFFF
+}
+-->
+</style>
+
+				<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td height="100" align="center" valign="middle" bgcolor="#0099FF"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td height="12" align="center" valign="middle">&nbsp;</td>
+								</tr>
+								<tr>
+									<td height="24" align="center" valign="middle" class="font_1">Copyright <font style="font-family: Arial"><a href="new.asp" style="color: #FFFFFF;">&copy;</a></font> 2012 鞍山市公安局公安交通管理局 <br /> 辽ICP备12008770号 <a href="http://www.ascykj.com" class="STYLE1">技术支持</a></td>
+								</tr>
+								<tr>
+									<td height="24" align="center" valign="middle"><script src="http://s4.cnzz.com/stat.php?id=4818551&web_id=4818551&show=pic" language="JavaScript"></script> <iframe name="I1" marginwidth="1" marginheight="1" height="15" width="128" src="tong.asp" scrolling="no" border="0" frameborder="0"> </iframe></td>
+								</tr>
+
+								<tr>
+									<td height="24" align="center" valign="middle">
+										<form action="Search.asp" method="post">
+											<input type="text" name="Keys" id="Keys" /><input type="submit" value="搜索" />
+										</form>
+									</td>
+								</tr>
+							</table></td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+</body>
+</html>

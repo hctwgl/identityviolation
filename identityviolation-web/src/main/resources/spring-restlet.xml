@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- 启用注解，并定义组件查找规则 ，mvc层只负责扫描@Controller -->
+	<context:component-scan base-package="com.mapbar.driver.controller" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<bean name="component" id="component" autowire="byName" class="org.restlet.ext.spring.SpringComponent">
+		<property name="defaultTarget" ref="application" />
+	</bean>
+	<bean name="application" id="application" class="org.restlet.Application">
+		<property name="inboundRoot" ref="router" />
+	</bean>
+	<bean name="router" class="org.restlet.ext.spring.SpringRouter">
+		<property name="attachments">
+			<map>
+				<entry key="/cityList">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="cityListController" />
+					</bean>
+				</entry>
+				<entry key="/query">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="driverController" />
+					</bean>
+				</entry>
+				<entry key="/refresh">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="refreshController" />
+					</bean>
+				</entry>
+				<entry key="/sconfig">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="sourceConfigController" />
+					</bean>
+				</entry>
+				<entry key="/cityconfig">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="cityConfigController" />
+					</bean>
+				</entry>
+				<entry key="/yzm">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="yzmController" />
+					</bean>
+				</entry>
+				<entry key="/login">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="loginController" />
+					</bean>
+				</entry>
+				<entry key="/userSynchronous">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="userSynchronousController" />
+					</bean>
+				</entry>
+				<entry key="/updateCityList">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="updateCityListController" />
+					</bean>
+				</entry>
+				<entry key="/CityList/{update_time}">
+					<bean class="org.restlet.ext.spring.SpringFinder">
+						<lookup-method name="create" bean="updateCityListController" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

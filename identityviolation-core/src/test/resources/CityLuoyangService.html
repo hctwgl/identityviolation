@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>交通违法查询</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+.Main {
+	width: 750px;
+	margin: 0 auto;
+	height: 480px;
+}
+
+.SearchTitle {
+	background: url('Images/lmbg.gif') top;
+	height: 32px;
+	border: 1px solid #C2D6E1;
+	border-bottom: 0px;
+	border-top: 0px;
+	line-height: 31px;
+	width: 748px;
+	margin: 2px 0;
+}
+
+.SearchBox {
+	height: 143px;
+	margin-top: 3px;
+	width: 100%;
+	background: url('Images/dlbg.jpg') top;
+}
+
+.SearchBoxLeft {
+	height: 143px;
+	width: 5px;
+	float: left;
+	background: url('Images/dlz.jpg') top;
+}
+
+.SearchBoxRight {
+	height: 143px;
+	width: 5px;
+	float: left;
+	background: url('Images/dly.jpg') top;
+}
+
+.SearchBoxCenter {
+	height: 143px;
+	width: 740px;
+	float: left;
+	background: url('Images/dlline.jpg') top center no-repeat;
+}
+
+.SearchInput {
+	width: 370px;
+	float: left;
+	overflow: hidden;
+	height: 143px;
+}
+
+.SearchInput table {
+	width: 100%;
+}
+
+.SearchInput table tr {
+	height: 26px;
+}
+
+.SearchInput table .td1 {
+	width: 120px;
+	text-align: right;
+}
+
+.SearchInput table .td2 {
+	width: auto;
+}
+
+.SearchBtn {
+	background: url('images/cx.gif');
+	border: 0;
+	height: 22px;
+	width: 57px;
+}
+
+.VehTable table,.DirTable table {
+	width: 100%;
+	margin: 8px 0;
+	background: silver;
+}
+
+.VehTable table tr,.DirTable table tr {
+	height: 30px;
+	text-align: center;
+	background: white;
+}
+
+.VehTable table tr td,.DirTable table tr td {
+	padding: 3px;
+}
+
+.VehTable table .head,.DirTable table .head {
+	white-space: nowrap;
+	background: #E8F3FF;
+}
+
+.VehTable table .head td,.DirTable table .head td {
+	white-space: nowrap;
+}
+
+.SearchResult {
+	width: 100%;
+	height: 290px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+</style>
+<script type="text/javascript" language="javascript">
+
+        String.prototype.Trim = function () { return this.replace(/(^\s*)|(\s*$)/g, ""); };
+        String.prototype.LTrim = function () { return this.replace(/(^\s*)/g, ""); };
+        String.prototype.RTrim = function () { return this.replace(/(\s*$)/g, ""); };
+        String.Format = function () { var s = arguments[0]; var m = 0; for (m; m < arguments.length - 1; m++) { var reg = new RegExp("\\{" + m + "\\}", "gm"); s = s.replace(reg, arguments[m + 1]); } return s; };
+        String.prototype.endsWith = function (suffix) { return (this.substr(this.length - suffix.length) === suffix); };
+        String.prototype.startsWith = function (prefix) { return (this.substr(0, prefix.length) === prefix); };
+        function CheckVehNo(str) { var reg = /^[\u4e00-\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{5}$/; return reg.test(str); };
+        function CheckVcode(str) { var reg = /^[0-9]{4}$/; return reg.test(str); };
+        function CheckDocNo(str) { var reg = /^[1-9]\d{6,20}$/; return reg.test(str) };
+        function CheckDriNo(str) { return checkIdcard(str) == "" ? true : false };
+        function checkIdcard(idcard) {
+            var Errors = new Array("", "身份证号码位数不对!", "身份证号码出生日期超出范围或含有非法字符!", "身份证号码校验错误!", "身份证地区非法!");
+            var area = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" }
+            var idcard, Y, JYM; var S, M; var idcard_array = new Array(); idcard_array = idcard.split(""); if (area[parseInt(idcard.substr(0, 2))] == null) return Errors[4];
+            switch (idcard.length) {
+                case 15: if ((parseInt(idcard.substr(6, 2)) + 1900) % 4 == 0 || ((parseInt(idcard.substr(6, 2)) + 1900) % 100 == 0 && (parseInt(idcard.substr(6, 2)) + 1900) % 4 == 0)) { ereg = /^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$/; } else { ereg = /^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$/; } if (ereg.test(idcard)) { return Errors[0]; } else { return Errors[2]; } break;
+                case 18: if (parseInt(idcard.substr(6, 4)) % 4 == 0 || (parseInt(idcard.substr(6, 4)) % 100 == 0 && parseInt(idcard.substr(6, 4)) % 4 == 0)) { ereg = /^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$/; } else { ereg = /^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$/; } if (ereg.test(idcard)) { S = (parseInt(idcard_array[0]) + parseInt(idcard_array[10])) * 7 + (parseInt(idcard_array[1]) + parseInt(idcard_array[11])) * 9 + (parseInt(idcard_array[2]) + parseInt(idcard_array[12])) * 10 + (parseInt(idcard_array[3]) + parseInt(idcard_array[13])) * 5 + (parseInt(idcard_array[4]) + parseInt(idcard_array[14])) * 8 + (parseInt(idcard_array[5]) + parseInt(idcard_array[15])) * 4 + (parseInt(idcard_array[6]) + parseInt(idcard_array[16])) * 2 + parseInt(idcard_array[7]) * 1 + parseInt(idcard_array[8]) * 6 + parseInt(idcard_array[9]) * 3; Y = S % 11; M = "F"; JYM = "10X98765432"; M = JYM.substr(Y, 1); if (M == idcard_array[17].toUpperCase()) { return Errors[0]; } else { return Errors[3]; } } else { return Errors[2]; } break;
+                default: return Errors[1]; break;
+            }
+        }
+
+        function ChageImg(imgid, imgtype) {
+            document.getElementById(imgid).src = "VCode.ashx?type=" + imgtype + "&flag=" + Math.random(Math.random());
+
+        }
+        function Check1() {
+            var locde = document.getElementById("Tbx_DirverL").value;
+            var dcode = document.getElementById("Tbx_DirverD").value;
+            var vcode = document.getElementById("Tbx_VCode1").value;
+            if (!CheckDriNo(locde)) {
+                document.getElementById("Tbx_DirverL").focus()
+                alert("驾驶证号不合法");
+                return false;
+            }
+            if (!CheckDocNo(dcode)) {
+                alert("档案编号不合法");
+                document.getElementById("Tbx_DirverD").focus();
+                return false;
+            }
+            if (!CheckVcode(vcode)) {
+                alert("验证码不合法");
+                document.getElementById("Tbx_VCode1").focus();
+                return false;
+            }
+            return true;
+        }
+        function Check2() {
+            var hphm = document.getElementById("Tbx_HPHM").value;
+            var fdjh = document.getElementById("Tbx_FDJH").value;
+            var vcode = document.getElementById("Tbx_VCode2").value;
+            if (!CheckVehNo(hphm)) {
+                alert("输入的车牌号不合法");
+                return false;
+            }
+            if (fdjh.Trim().lenght < 6) {
+                alert("至少输入发动机号后六位");
+                return false;
+            }
+            if (!CheckVcode(vcode)) {
+                alert("验证码不合法");
+                document.getElementById("Tbx_VCode2").focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+	<form method="post" action="SearchPage.aspx?dirverl=410326199203093751&amp;dirverd=410300961228" id="form1">
+		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMTk1NzYzNjg4D2QWAgIDD2QWBgIBDxYCHglpbm5lcmh0bWwFK+aVsOaNruacgOWQjuabtOaWsOaXpeacnzIwMTUtMTItMDYgMjA6NTQ6NTFkAhUPFgIfAGVkAhcPFgIeB1Zpc2libGVnFhACAQ8WAh8ABQJDMWQCAw8WAh8ABQbmraPluLhkAgUPFgIfAAUBMGQCBw8WAh8ABQoyMDExLTA4LTI5ZAIJDxYCHwAFCjIwMTctMDgtMjlkAgsPFgIfAAUKMjAxNy0wOC0yOWQCDQ8WBB4LXyFJdGVtQ291bnRmHwFnZAIPDxYEHwJmHwFnZGRUjQcSEg+e1mAMKdQPVLIsyefi2+diatvBnzzxVlHLcQ==" />
+
+		<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAApMmqpfGfTJIljy3Asc1D3tEWCLmkmNWzJ7fkZXXzDtRbDzcLou1r5sIjtixc9Cbs1UnshDiOiMAPxRNyPsfCaXgUELETBHb4Uqz4Ct8uWVu3cgjfwPObc6ZCNUAzv0xcIA5ZxUoGQPyNUmHOoKDJ1h71IDLpjjCMt3YjC3tBPdcbpZEV1bl0V4kp9uSdkhB60fW0ksZe79ZjUQkCiW8NwnMueA1DuqtLXAGYR6F7K7JlPOo1Pp1I/ctBrrEQjsf0Y=" />
+		<div class="Main">
+			<div class="SearchTitle">
+				<span style="display: inline-block; width: 30px; background: url('images/inc3.gif') center no-repeat;"> &nbsp; </span>违法信息查询 <b id="lastdate">数据最后更新日期2015-12-06 20:54:51</b> <span style="color: Red;"> （按照公安部要求，查询车辆信息必须录入发动机号）</span>
+			</div>
+			<div class="SearchResult">
+				<div id="ErrorBar"></div>
+				<div id="DirTable" class="DirTable">
+					<table cellpadding="0" cellspacing="1">
+						<tr class="head">
+							<td colspan="6"><b>基本信息</b></td>
+						</tr>
+						<tr class="head">
+							<td>准驾车型</td>
+							<td>驾照状态</td>
+							<td>当前积分</td>
+							<td>初领日期</td>
+							<td>有效期至</td>
+							<td>审验日期</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="Txt_DirJZCX">C1</div>
+							</td>
+							<td>
+								<div id="Txt_DirZT">正常</div>
+							</td>
+							<td>
+								<div id="Txt_DirJF">0</div>
+							</td>
+							<td>
+								<div id="Txt_DirCLRZ">2011-08-29</div>
+							</td>
+							<td>
+								<div id="Txt_DirYXQZ">2017-08-29</div>
+							</td>
+							<td>
+								<div id="Txt_DirSYRQ">2017-08-29</div>
+							</td>
+						</tr>
+					</table>
+
+					<table cellpadding="0" cellspacing="1">
+						<tr class="head">
+							<td colspan="9"><b>驾驶员违法信息</b></td>
+						</tr>
+						<tr class="head">
+							<td>违法编号</td>
+							<td>当事人</td>
+							<td>违法时间</td>
+							<td>违法地点</td>
+							<td>违法记分</td>
+							<td>处理机关</td>
+							<td>号牌种类</td>
+							<td>号牌号码</td>
+							<td>交款标记</td>
+						</tr>
+
+					</table>
+
+
+					<table cellpadding="0" cellspacing="1">
+						<tr class="head">
+							<td colspan="12"><b>裁决信息</b></td>
+						</tr>
+						<tr class="head">
+							<td>凭证编号</td>
+							<td>当事人</td>
+							<td>违法时间</td>
+							<td>违法地点</td>
+							<td>违法<br /> 代码1
+							</td>
+							<td>违法<br /> 代码2
+							</td>
+							<td>发现机关</td>
+							<td>号牌种类</td>
+							<td>号牌号码</td>
+							<td>强制措施<br /> 类型
+							</td>
+							<td>裁决标记</td>
+							<td>裁决时间</td>
+						</tr>
+
+					</table>
+
+				</div>
+
+			</div>
+		</div>
+	</form>
+</body>
+</html>
