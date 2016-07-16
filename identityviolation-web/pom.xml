@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>identityviolation-web</artifactId>
     <packaging>war</packaging>
-    <name>identityviolation-web Maven Webapp</name>
+    <name>identityviolation-web</name>
     <url>http://maven.apache.org</url>
     <repositories>
         <repository>
