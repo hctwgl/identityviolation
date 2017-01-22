@@ -207,8 +207,6 @@ public class HttpClientUtil {
 	 * @param url
 	 * @param params
 	 * @param encode
-	 * @param connectTimeout
-	 * @param soTimeout
 	 * @return
 	 */
 	public static String getUrlWithParams(String url, Map<String, String> params, String encode) {
